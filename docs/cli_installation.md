@@ -118,6 +118,8 @@ After finishing either of the instructions above, you should now be able to run 
 
 ### Download With PowerShell: Invoke-WebRequest
 
+Choose the binary for your Windows device's architecture: `amd64` for x64 or `arm64` for ARM.
+
 You can view the latest version of Argo CD at the link above or run the following command to grab the version:
 
 ```powershell
@@ -127,7 +129,8 @@ $version = (Invoke-RestMethod https://api.github.com/repos/argoproj/argo-cd/rele
 Replace `$version` in the command below with the version of Argo CD you would like to download:
 
 ```powershell
-$url = "https://github.com/argoproj/argo-cd/releases/download/" + $version + "/argocd-windows-amd64.exe"
+$architecture = "amd64" # Use "arm64" for Windows on ARM.
+$url = "https://github.com/argoproj/argo-cd/releases/download/" + $version + "/argocd-windows-" + $architecture + ".exe"
 $output = "argocd.exe"
 
 Invoke-WebRequest -Uri $url -OutFile $output
